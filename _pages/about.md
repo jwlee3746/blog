@@ -5,9 +5,9 @@ layout: single
 comments: false
 ---
 
-![jaynote]({{site.url}}/assets/images/posts_img/about/jaynote.png)
+![jaynote]({{site.url}}{{site.baseurl}}/assets/images/posts_img/about/jaynote.png)
 
-<!-- <img src="{{site.url}}/assets/images/posts_img/about/jaynote.png" width="256" height="256"/> -->
+<!-- <img src="{{site.url}}{{site.baseurl}}/assets/images/posts_img/about/jaynote.png" width="256" height="256"/> -->
 
 ## Education
 
