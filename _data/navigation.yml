@@ -1,16 +1,16 @@
 # main links
 main:
-  - title: "Home"
-    url: https://jwlee3746.github.io/ # 블로그 HOME 바로가기
+  - title: "Portfolio"
+    url: https://jwlee3746.github.io/ # 포트폴리오 홈 (루트)
 
-  - title: "About"
-    url: /about/ #_pages/about.md 연결
+  - title: "이력서"
+    url: https://jwlee3746.github.io/about.html # 포트폴리오의 이력서 페이지
+
+  - title: "Posts"
+    url: /categories/ # 카테고리별 글 목록
 
   - title: "Search"
     url: /search/
-    
-  - title: "Project"
-    url: /Project/
 
   # - title: "GitHub"
   #   url: "https://github.com/jwlee3746" # 깃허브 바로가기 (본인 깃허브로 변경)
