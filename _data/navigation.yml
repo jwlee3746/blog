@@ -3,9 +3,6 @@ main:
   - title: "Portfolio"
     url: https://jwlee3746.github.io/ # 포트폴리오 홈 (루트)
 
-  - title: "이력서"
-    url: https://jwlee3746.github.io/about.html # 포트폴리오의 이력서 페이지
-
   - title: "Posts"
     url: /categories/ # 카테고리별 글 목록
 
