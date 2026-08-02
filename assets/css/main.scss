@@ -28,3 +28,74 @@
 
 
    
+
+/* ── 프로젝트 글: 그림 · 수치 · 표 ───────────────────────
+   원본이 흰 바탕 도해·그래프라 테두리가 없으면 본문 배경에 녹아
+   경계가 사라진다. plum 스킨의 $border-color는 흰색이라 쓸 수 없어
+   고정 회색을 쓴다. */
+
+$figure-border: #e3e3e3;
+
+.page__content {
+
+  figure {
+    margin: 2em 0;
+
+    img {
+      background: #fff;
+      border: 1px solid $figure-border;
+      padding: 0.75em;
+    }
+
+    figcaption {
+      width: 100%;
+      margin-top: 0.6em;
+      font-size: 0.72em;
+      line-height: 1.65;
+      color: $muted-text-color;
+      text-align: left;
+    }
+  }
+
+  /* 핵심 수치는 문단에 묻히지 않게 따로 세운다 */
+  .metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75em;
+    margin: 1.5em 0;
+  }
+
+  .metric {
+    flex: 1 1 180px;
+    padding: 1em 1.25em;
+    border: 1px solid $figure-border;
+    border-radius: $border-radius;
+  }
+
+  .metric-label {
+    font-family: $monospace;
+    font-size: 0.72em;
+    color: $muted-text-color;
+  }
+
+  .metric-value {
+    margin-top: 0.35em;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 1.2;
+
+    .from { color: $muted-text-color; font-weight: 400; }
+    .to { color: $primary-color; }
+  }
+
+  /* 숫자 열은 오른쪽 정렬 + 자릿수 고정 폭이라야 비교가 된다 */
+  table {
+    font-size: 0.85em;
+
+    th:not(:first-child),
+    td:not(:first-child) {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
