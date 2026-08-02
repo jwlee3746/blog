@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba($background-color, 0.9);
+  background-color: color-mix(in srgb, var(--mm-bg) 90%, transparent);
   border-bottom: 1px solid $border-color;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;

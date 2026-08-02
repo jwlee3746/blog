@@ -80,7 +80,7 @@
       text-align: center;
       text-decoration: none;
       color: $muted-text-color;
-      border: 1px solid mix(#000, $border-color, 25%);
+      border: 1px solid var(--mm-line);
       border-radius: 0;
 
       &:hover {
@@ -94,7 +94,7 @@
       }
 
       &.disabled {
-        color: rgba($muted-text-color, 0.5);
+        color: color-mix(in srgb, var(--mm-muted) 50%, transparent);
         pointer-events: none;
         cursor: not-allowed;
       }
@@ -129,11 +129,11 @@
     text-align: center;
     text-decoration: none;
     color: $muted-text-color;
-    border: 1px solid mix(#000, $border-color, 25%);
+    border: 1px solid var(--mm-line);
     border-radius: $border-radius;
 
     &:hover {
-      @include yiq-contrasted($muted-text-color);
+      color: var(--mm-bg); background-color: var(--mm-muted);
     }
 
     &:first-child {
@@ -148,7 +148,7 @@
     }
 
     &.disabled {
-      color: rgba($muted-text-color, 0.5);
+      color: color-mix(in srgb, var(--mm-muted) 50%, transparent);
       pointer-events: none;
       cursor: not-allowed;
     }
@@ -450,7 +450,7 @@
     font-weight: 500;
 
     &:hover {
-      color: rgba($text-color, 0.8);
+      color: color-mix(in srgb, var(--mm-text) 80%, transparent);
     }
   }
 
@@ -458,7 +458,7 @@
   ul {
     margin-left: 1em;
     padding: 0 0 0 1em;
-    border-left: 3px solid rgba($primary-color, 0.2);
+    border-left: 3px solid color-mix(in srgb, var(--mm-accent) 20%, transparent);
     li {
       padding: 0.1em 0 0.1em 0;
     }
@@ -541,12 +541,12 @@
     background: inherit;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
-    border-bottom: 1.5px solid rgba($primary-color, 0.3);
+    border-bottom: 1.5px solid color-mix(in srgb, var(--mm-accent) 30%, transparent);
   }
 
   // Scrollspy marks toc items as .active when they are in focus
   .active a {
-    @include yiq-contrasted($active-color);
+    color: var(--mm-ink); background-color: var(--mm-active);
   }
 }
 
@@ -567,7 +567,7 @@
     color: $text-color;
     font-weight: 400;
     line-height: 1.5;
-    border-bottom: 1.5px solid rgba($primary-color, 0.3);
+    border-bottom: 1.5px solid color-mix(in srgb, var(--mm-accent) 30%, transparent);
 
     &:hover {
       font-weight: 500;

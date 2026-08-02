@@ -1,101 +1,50 @@
---- 
-# Only the main Sass file needs front matter (the dashes are enough) 
---- 
-
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
 
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-@import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;300;400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@font-face {
-   font-family: 'RIDIBatang';
-   font-weight: normal;
-   src: url(/assets/css/fonts/RIDIBatang.otf);
-}
+@import "overrides";
 
 
-   
-
-/* ── 프로젝트 글: 그림 · 수치 · 표 ───────────────────────
-   원본이 흰 바탕 도해·그래프라 테두리가 없으면 본문 배경에 녹아
-   경계가 사라진다. plum 스킨의 $border-color는 흰색이라 쓸 수 없어
-   고정 회색을 쓴다. */
-
-$figure-border: #e3e3e3;
-
+/* ── 글 본문: 그림 · 수치 · 표 ─────────────────────────── */
 .page__content {
-
-  figure {
-    margin: 2em 0;
-
-    img {
-      background: #fff;
-      border: 1px solid $figure-border;
-      padding: 0.75em;
-    }
-
-    figcaption {
-      width: 100%;
-      margin-top: 0.6em;
-      font-size: 0.72em;
-      line-height: 1.65;
-      color: $muted-text-color;
-      text-align: left;
-    }
+  figure { margin: 2.2em 0; }
+  figcaption {
+    width: 100%; margin-top: 0.7em;
+    font-size: 0.74em; line-height: 1.65;
+    color: var(--mm-muted); text-align: left;
   }
+  img { border-radius: 12px; }
 
-  /* 핵심 수치는 문단에 묻히지 않게 따로 세운다 */
-  .metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75em;
-    margin: 1.5em 0;
-  }
-
+  .metrics { display: flex; flex-wrap: wrap; gap: 0.75em; margin: 1.6em 0; }
   .metric {
-    flex: 1 1 180px;
-    padding: 1em 1.25em;
-    border: 1px solid $figure-border;
-    border-radius: $border-radius;
+    flex: 1 1 180px; padding: 1.1em 1.3em;
+    border: 1px solid var(--mm-line); border-radius: 12px;
+    background: var(--mm-raised);
   }
-
   .metric-label {
-    font-family: $monospace;
-    font-size: 0.72em;
-    color: $muted-text-color;
+    font-family: $monospace; font-size: 0.7em; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--mm-hot);
   }
-
   .metric-value {
-    margin-top: 0.35em;
-    font-size: 1.5em;
-    font-weight: 700;
-    line-height: 1.2;
-
-    .from { color: $muted-text-color; font-weight: 400; }
-    .to { color: $primary-color; }
+    margin-top: 0.35em; font-size: 1.6em; font-weight: 700;
+    line-height: 1.2; color: var(--mm-ink);
+    .from { color: var(--mm-muted); font-weight: 400; }
+    .to { color: var(--mm-accent); }
   }
 
-  /* 숫자 열은 오른쪽 정렬 + 자릿수 고정 폭이라야 비교가 된다 */
-  table {
-    font-size: 0.85em;
-
-    th:not(:first-child),
-    td:not(:first-child) {
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-  }
+  /* 정렬은 마크다운 표의 `---:` 지정에 맡긴다 */
+  table { font-size: 0.88em; }
+  td { font-variant-numeric: tabular-nums; }
 }
+
+/* 흰 배경 도해는 다크에서만 판을 깐다. 라이트에서는 지면과 같은 색이라 필요 없다. */
+@mixin plate { .page__content img { background: #fff; padding: 0.75em; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { @include plate; } }
+:root[data-theme="dark"] { @include plate; }

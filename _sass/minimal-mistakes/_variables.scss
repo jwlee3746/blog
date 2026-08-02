@@ -83,7 +83,7 @@ $danger-color: #ee5f5b !default;
 $info-color: #3b9cba !default;
 $focus-color: $primary-color !default;
 // navigation background color
-$active-color: mix($primary-color, $background-color, 5%) !default;
+$active-color: var(--mm-active) !default;
 
 /* YIQ color contrast */
 $yiq-contrasted-dark-default: $dark-gray !default;
