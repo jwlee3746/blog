@@ -239,7 +239,20 @@ tbody tr:nth-child(2n) { background-color: transparent; }
 .search-content .search-input { background: transparent; color: var(--mm-ink); }
 
 /* ── 테마 토글 ──────────────────────────────────────────────────────
-   검색 버튼과 같은 자리(.greedy-nav 직속)에 들어간다. 글자 없이 아이콘만. */
+   .greedy-nav 안에 두면 안 된다. greedy-nav 의 스크립트는 로고·제목·검색·
+   햄버거 폭만 빼고 남는 자리를 계산하는데, 이 버튼은 그 목록에 없어서
+   좁은 화면에서 링크가 접히지 않고 제목 위로 겹쳐 버린다.
+   그래서 nav 바깥(.masthead__menu 직속)에 두고, nav 를 flex 로 줄여
+   버튼이 차지한 만큼 innerWidth 가 실제로 작아지게 한다. */
+.masthead__menu {
+  display: flex;
+  align-items: center;
+}
+.masthead__menu .greedy-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .theme-toggle {
   flex: 0 0 auto;
   width: 38px; height: 38px;
