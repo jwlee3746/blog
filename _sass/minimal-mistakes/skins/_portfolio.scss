@@ -103,7 +103,9 @@ $masthead-link-color-hover: var(--mm-ink);
 $navicon-link-color-hover: var(--mm-text);
 $active-color: var(--mm-active);
 
-$yiq-contrasted-dark-default: hsl(188deg 52% 18%) !default;
+/* libsass(GitHub Pages)는 hsl() 의 공백 구분 표기를 SassScript 자리에서 못 읽는다.
+   커스텀 프로퍼티 값은 plain CSS 로 통과되지만, 여기처럼 평가되는 자리는 리터럴로 둔다. */
+$yiq-contrasted-dark-default: #163f46 !default;
 $yiq-contrasted-light-default: #ffffff !default;
 $yiq-contrasted-threshold: 175 !default;
 $yiq-debug: false !default;
