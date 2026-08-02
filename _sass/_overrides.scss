@@ -27,6 +27,8 @@ html::before {
   top: 0; left: 0; right: 0; height: 430px;
   background: linear-gradient(to bottom, var(--mm-band-1), var(--mm-band-2));
 }
+$wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,150 C210,40 390,36 690,120 C960,196 1170,206 1440,96 L1440,320 L0,320 Z' fill='%23000'/%3E%3C/svg%3E");
+
 /* 구름 — 그라디언트로 겹치면 능선이 뭉툭해서, SVG 곡선을 마스크로 쓴다.
    마스크는 형태만 정하고 색은 background-color 가 내므로 토큰을 그대로 따라간다. */
 html::after {
@@ -34,9 +36,8 @@ html::after {
   position: absolute; z-index: -1;
   top: 190px; left: 0; right: 0; height: 260px;
   background-color: var(--mm-bg);
-  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath d='M0,150 C210,40 390,36 690,120 C960,196 1170,206 1440,96 L1440,320 L0,320 Z' fill='%23000'/%3E%3C/svg%3E");
-  -webkit-mask-image: var(--wave);
-  mask-image: var(--wave);
+  -webkit-mask-image: $wave;
+  mask-image: $wave;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
