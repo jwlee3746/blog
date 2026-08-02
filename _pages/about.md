@@ -23,7 +23,7 @@ comments: false
 - Full-time, Software Engineer
 - July 2024 - present
 
-### Pebblous
+### Industry-Academia Internship
 
 - Intern, ML Engineer
 - May 2022 - Feb 2023
