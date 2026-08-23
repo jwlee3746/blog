@@ -20,7 +20,7 @@ comments: false
 
 ### Samsung Electronics
 
-- Full-time, Software Engineer
+- Full-time, ML Engineer
 - July 2024 - present
 
 ### Industry-Academia Internship
