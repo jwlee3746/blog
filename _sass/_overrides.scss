@@ -962,6 +962,15 @@ html:has(.portfolio-blog)::after { display: none; }
   font-size: .82rem;
   line-height: 1.6;
 }
+.pb-resume-cta,
+.pb-resume-cta:visited {
+  margin-top: 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--pb-link);
+  font-size: .78rem;
+}
 .pb-nav {
   margin: 30px -24px 0 -40px;
   display: flex;
@@ -989,6 +998,35 @@ html:has(.portfolio-blog)::after { display: none; }
   font-size: 95%;
   opacity: .8;
 }
+.pb-nav-group { width: 100%; }
+.pb-nav-sub {
+  margin: .4rem 0 .8rem 49px;
+  padding-left: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid var(--pb-sidebar-border);
+}
+.pb-nav .pb-nav-sub a,
+.pb-nav .pb-nav-sub a:visited {
+  width: auto;
+  margin: 0;
+  padding: .28rem 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--pb-muted);
+  font-family: var(--pb-font);
+  font-size: .7rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: .055em;
+}
+.pb-nav .pb-nav-sub a:hover,
+.pb-nav .pb-nav-sub a.active {
+  background: transparent;
+  color: var(--pb-sidebar-active);
+}
+.pb-nav-categories { margin-top: .2rem; }
 .pb-sidebar-foot {
   padding-top: 18px;
   display: flex;
