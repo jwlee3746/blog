@@ -46,7 +46,8 @@ for page in \
   Agent/trace-to-eval-data-flywheel \
   Agent/test-case-vs-simulator-evaluation \
   Agent/agent-evaluation-harness-landscape \
-  Agent/hybrid-agent-evaluation-strategy; do
+  Agent/hybrid-agent-evaluation-strategy \
+  Agent/demystifying-agent-evals-korean; do
   [ -f "/tmp/site/$page/index.html" ] || { echo "$page 글이 생성되지 않았습니다"; exit 1; }
 done
 
