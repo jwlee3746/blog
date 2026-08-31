@@ -1,0 +1,29 @@
+<header class="pb-topbar" aria-label="현재 페이지">
+  <button class="pb-sidebar-trigger" id="pb-sidebar-trigger" type="button" aria-label="메뉴 열기" aria-expanded="false">
+    <i class="fas fa-bars fa-fw" aria-hidden="true"></i>
+  </button>
+
+  <nav class="pb-breadcrumb" aria-label="경로">
+    {% if page.layout == 'category' %}
+      <a href="{{ '/categories/' | relative_url }}">Categories</a><span>/</span><strong>{{ page.title }}</strong>
+    {% elsif page.layout == 'categories' %}
+      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>Categories</strong>
+    {% elsif page.layout == 'search' %}
+      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>Search</strong>
+    {% elsif page.id %}
+      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>{{ page.title | strip_html }}</strong>
+    {% else %}
+      <span>Posts</span><span>/</span><strong>{{ page.title | default: site.title }}</strong>
+    {% endif %}
+  </nav>
+
+  <span class="pb-topbar-title">{{ page.title | default: site.title }}</span>
+  <form class="pb-search" id="pb-search-form" role="search" action="{{ '/search/' | relative_url }}" method="get">
+    <label class="sr-only" for="pb-search-input">블로그 검색</label>
+    <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+    <input id="pb-search-input" name="q" type="search" placeholder="Search..." autocomplete="off">
+    <button class="pb-search-clear" id="pb-search-clear" type="button" aria-label="검색어 지우기" hidden>
+      <i class="fas fa-times fa-fw" aria-hidden="true"></i>
+    </button>
+  </form>
+</header>
