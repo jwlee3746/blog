@@ -60,7 +60,9 @@ for page in \
   Agent/agent-evaluation-harness-landscape \
   Agent/hybrid-agent-evaluation-strategy \
   Agent/demystifying-agent-evals-korean \
-  Agent/device-assistant-evaluation; do
+  Agent/device-assistant-evaluation \
+  Agent/openclaw-architecture-research \
+  Agent/openclaw-component-application; do
   [ -f "/tmp/site/$page/index.html" ] || { echo "$page 글이 생성되지 않았습니다"; exit 1; }
 done
 
@@ -78,5 +80,6 @@ for diagram in \
   device-assistant-evaluation-layers.svg; do
   [ -f "/tmp/site/assets/images/posts_img/device-assistant-evaluation/$diagram" ] || { echo "$diagram 다이어그램이 누락됐습니다"; exit 1; }
 done
+[ -f /tmp/site/assets/images/posts_img/openclaw-runtime-map.svg ] || { echo "OpenClaw 다이어그램이 누락됐습니다"; exit 1; }
 echo "빌드 검증 통과"
 '
