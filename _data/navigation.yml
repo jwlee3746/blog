@@ -8,29 +8,3 @@ main:
 
   - title: "Search"
     url: /search/
-
-  # - title: "GitHub"
-  #   url: "https://github.com/jwlee3746" # 깃허브 바로가기 (본인 깃허브로 변경)
-
-# sidebar navigation (categories)
-categories:
-  - title: "Agent"
-    url: /categories/Agent/
-  - title: "Algorithm"
-    url: /categories/Algorithm/
-  - title: "Computer Vision"
-    url: /categories/Computer Vision/
-  - title: "Generative Model"
-    url: /categories/Generative Model/
-  - title: "Machine Learning"
-    url: /categories/Machine Learning/
-  - title: "MLOps"
-    url: /categories/MLOps
-  - title: "NLP"
-    url: /categories/NLP/
-  - title: "Paper"
-    url: /categories/Paper/
-  - title: "Project"
-    url: /categories/Project/
-  - title: "Etc"
-    url: /categories/Etc/

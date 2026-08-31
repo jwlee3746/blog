@@ -14,6 +14,21 @@ body {
   line-height: 1.85;
 }
 
+/* 스크롤바는 마크업 안의 인라인 CSS 대신 테마 토큰을 사용한다. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mm-line) transparent;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--mm-line);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--mm-muted); }
+
 /* ── 상단 하늘 밴드 ─────────────────────────────────────────────────
    joshwcomeau 는 하늘색 띠를 깔고 흰 구름으로 잘라 본문으로 녹인다.
    Minimal Mistakes 마크업을 안 건드리고 body / .initial-content 의
@@ -99,6 +114,98 @@ h1, h2, h3, h4, h5, h6,
   ul > li::marker { color: var(--mm-accent); }
 }
 
+/* ── 콘텐츠 중심 레이아웃 ──────────────────────────────────────────
+   프로필과 카테고리는 포트폴리오·Posts 페이지에서 찾을 수 있으므로
+   왼쪽 사이드바를 없애고 본문과 글 목차에 폭을 배분한다. */
+@include breakpoint($large) {
+  .layout--single .page {
+    float: none;
+    width: 100%;
+    max-width: 1180px;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+
+  .layout--home .archive,
+  .layout--archive .archive,
+  .layout--category .archive,
+  .layout--categories .archive,
+  .layout--posts .archive,
+  .layout--search .archive {
+    float: none;
+    width: 100%;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@include breakpoint($x-large) {
+  .layout--single .page { width: 100%; }
+
+  .layout--home .archive,
+  .layout--archive .archive,
+  .layout--category .archive,
+  .layout--categories .archive,
+  .layout--posts .archive,
+  .layout--search .archive { width: 100%; }
+}
+
+/* 홈에서는 프로필 소개 대신 블로그의 쓰임과 주요 주제만 짧게 보여준다. */
+.blog-intro {
+  margin: 0 0 4rem;
+  padding: 1.6rem 0 2rem;
+  border-bottom: 1px solid var(--mm-line);
+}
+.blog-intro__eyebrow {
+  margin-bottom: .75rem;
+  color: var(--mm-hot);
+  font-family: $monospace;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+.blog-intro h1 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: -.035em;
+  line-height: 1.2;
+}
+.blog-intro p {
+  max-width: 700px;
+  margin: 1.15rem 0 0;
+  color: var(--mm-text);
+  font-size: 1.05rem;
+}
+.blog-intro__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1.4rem;
+}
+.blog-intro__topics a {
+  padding: .38rem .85rem;
+  color: var(--mm-accent);
+  background: var(--mm-chip);
+  border-radius: 999px;
+  font-family: $monospace;
+  font-size: .76rem;
+  font-weight: 600;
+}
+.blog-intro__topics a:hover { color: var(--mm-ink); background: var(--mm-active); }
+
+/* 글 목록을 카드처럼 두껍게 감싸지 않고 구분선과 여백으로만 나눈다. */
+.entries-list .list__item {
+  padding: 1.1rem 0 1.25rem;
+  border-bottom: 1px solid var(--mm-line);
+}
+.entries-list .list__item:first-child { padding-top: .35rem; }
+.entries-list .archive__item-title { margin-top: 0; }
+.entries-list .archive__item-excerpt { max-width: 720px; margin-bottom: 0; }
+
 /* ── 마스트헤드 ─────────────────────────────────────────────────── */
 .masthead { background: transparent; border-bottom: 0; }
 .greedy-nav {
@@ -110,40 +217,6 @@ h1, h2, h3, h4, h5, h6,
 }
 .site-title, .site-title:visited { color: var(--mm-ink); font-weight: 700; }
 .site-subtitle { color: var(--mm-muted); }
-
-/* ── 사이드바 ───────────────────────────────────────────────────── */
-.sidebar {
-  .author__name { color: var(--mm-ink); }
-  .author__bio, .author__urls a { color: var(--mm-text); }
-}
-.author__avatar img {
-  border: 3px solid var(--mm-bg);
-  border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(61, 129, 143, 0.18);
-}
-/* 카테고리 목록에 화살표를 붙인다 — joshwcomeau 의 목록 관용구 */
-.nav__list .nav__items {
-  a {
-    color: var(--mm-text);
-    border-radius: 6px;
-    display: flex;
-    align-items: baseline;
-    &::before {
-      content: "\2192";
-      display: inline-block;
-      margin-right: 0.5em;
-      color: var(--mm-accent);
-      opacity: .5;
-      transition: transform .18s ease, opacity .18s ease;
-    }
-    &:hover {
-      color: var(--mm-ink);
-      background: var(--mm-active);
-      &::before { transform: translateX(2px); opacity: 1; }
-    }
-  }
-  .active { color: var(--mm-accent); font-weight: 600; }
-}
 
 /* ── 목차 ───────────────────────────────────────────────────────── */
 .toc {
