@@ -3,14 +3,8 @@ main:
   - title: "Portfolio"
     url: https://jwlee3746.github.io/ # 포트폴리오 홈 (루트)
 
-  - title: "Projects"
-    url: /Project/
-
   - title: "Posts"
     url: /categories/ # 카테고리별 글 목록
-
-  - title: "About"
-    url: /about/
 
   - title: "Search"
     url: /search/
