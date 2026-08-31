@@ -39,5 +39,6 @@ else
   echo "main.css 가 생성되지 않았습니다 — SCSS 컴파일 실패"; exit 1
 fi
 [ -f /tmp/site/Paper/Attention1/index.html ] || { echo "글이 생성되지 않았습니다"; exit 1; }
+[ -f /tmp/site/posts/index.html ] || { echo "Posts 목록이 생성되지 않았습니다"; exit 1; }
 echo "빌드 검증 통과"
 '
