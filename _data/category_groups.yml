@@ -3,7 +3,10 @@
   categories:
     - name: "Agent"
       url: "/categories/Agent/"
-      description: "에이전트 설계·평가·운영"
+      description: "에이전트 설계·프레임워크·운영"
+    - name: "Evaluation"
+      url: "/categories/evaluation/"
+      description: "LLM·에이전트 평가 설계와 운영"
 
 - title: "프로젝트 · 논문"
   description: "직접 구현한 프로젝트와 논문을 따라간 기록"

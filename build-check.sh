@@ -40,6 +40,12 @@ else
 fi
 [ -f /tmp/site/Paper/Attention1/index.html ] || { echo "글이 생성되지 않았습니다"; exit 1; }
 [ -f /tmp/site/posts/index.html ] || { echo "Posts 목록이 생성되지 않았습니다"; exit 1; }
+[ -f /tmp/site/categories/evaluation/index.html ] || { echo "Evaluation 카테고리가 생성되지 않았습니다"; exit 1; }
+grep -q "재현 가능한 LLM 에이전트 평가" /tmp/site/categories/evaluation/index.html || { echo "평가 글이 Evaluation 카테고리에 없습니다"; exit 1; }
+grep -q "LangChain deepagents SDK" /tmp/site/categories/Agent/index.html || { echo "일반 에이전트 글이 Agent 카테고리에 없습니다"; exit 1; }
+if grep -q "재현 가능한 LLM 에이전트 평가" /tmp/site/categories/Agent/index.html; then
+  echo "평가 글이 Agent 카테고리에 남아 있습니다"; exit 1
+fi
 
 for page in \
   Agent/reproducible-agent-evaluation \
