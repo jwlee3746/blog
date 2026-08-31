@@ -5,15 +5,19 @@
 
   <nav class="pb-breadcrumb" aria-label="경로">
     {% if page.layout == 'category' %}
-      <a href="{{ '/categories/' | relative_url }}">Categories</a><span>/</span><strong>{{ page.title }}</strong>
+      <a href="{{ '/' | relative_url }}">Posts by Category</a><span>/</span><strong>{{ page.title }}</strong>
     {% elsif page.layout == 'categories' %}
-      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>Categories</strong>
+      <a href="{{ '/' | relative_url }}">Posts by Category</a><span>/</span><strong>Categories</strong>
     {% elsif page.layout == 'search' %}
-      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>Search</strong>
+      <a href="{{ '/posts/' | relative_url }}">Posts</a><span>/</span><strong>Search</strong>
     {% elsif page.id %}
-      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>{{ page.title | strip_html }}</strong>
+      <a href="{{ '/posts/' | relative_url }}">Posts</a><span>/</span><strong>{{ page.title | strip_html }}</strong>
+    {% elsif page.url == '/posts/' %}
+      <a href="{{ '/' | relative_url }}">Blog</a><span>/</span><strong>Posts</strong>
+    {% elsif page.url == '/' %}
+      <a href="https://jwlee3746.github.io/#about">Home</a><span>/</span><strong>Posts by Category</strong>
     {% else %}
-      <span>Posts</span><span>/</span><strong>{{ page.title | default: site.title }}</strong>
+      <a href="{{ '/' | relative_url }}">Blog</a><span>/</span><strong>{{ page.title | default: site.title }}</strong>
     {% endif %}
   </nav>
 

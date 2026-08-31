@@ -14,19 +14,29 @@
     <a class="pb-resume-cta" href="https://jwlee3746.github.io/resume/" target="_blank" rel="noopener">이력서 보기 · PDF <span aria-hidden="true">→</span><span class="sr-only"> (새 탭에서 열림)</span></a>
 
     <nav class="pb-nav" id="site-nav" aria-label="주요 메뉴">
+      <a class="pb-nav-parent" href="https://jwlee3746.github.io/#about">
+        <i class="fas fa-home fa-fw" aria-hidden="true"></i><span>HOME</span>
+      </a>
       <div class="pb-nav-group">
-        <a class="pb-nav-parent" href="https://jwlee3746.github.io/#about">
-          <i class="fas fa-home fa-fw" aria-hidden="true"></i><span>HOME</span>
+        <a class="pb-nav-parent pb-nav-categories{% if pb_categories_active %} active{% endif %}"{% if pb_categories_active %} aria-current="page"{% endif %} href="{{ '/' | relative_url }}">
+          <i class="fas fa-stream fa-fw" aria-hidden="true"></i><span>POSTS BY CATEGORY</span>
         </a>
-        <div class="pb-nav-sub" aria-label="Home 하위 섹션">
-          <a href="https://jwlee3746.github.io/#about">HOME</a>
-          <a href="https://jwlee3746.github.io/#experience">EXPERIENCE</a>
-          <a href="https://jwlee3746.github.io/#projects">PROJECTS</a>
-          <a{% unless pb_categories_active %} class="active" aria-current="page"{% endunless %} href="{{ '/posts/' | relative_url }}">POSTS</a>
-        </div>
+        {% if pb_categories_active %}
+          <div class="pb-nav-sub" aria-label="Posts by Category 하위 분류">
+            <a{% if page.layout == 'categories' %} class="active" aria-current="page"{% endif %} href="{{ '/categories/' | relative_url }}">ALL CATEGORIES</a>
+            {% for group in site.data.category_groups %}
+              {% for item in group.categories %}
+                {% assign category_posts = site.categories[item.name] %}
+                {% if category_posts and category_posts.size > 0 %}
+                  <a{% if page.layout == 'category' and page.title == item.name %} class="active" aria-current="page"{% endif %} href="{{ item.url | relative_url }}">{{ item.name | upcase }}</a>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
-      <a class="pb-nav-parent pb-nav-categories{% if pb_categories_active %} active{% endif %}"{% if pb_categories_active %} aria-current="page"{% endif %} href="{{ '/categories/' | relative_url }}">
-        <i class="fas fa-stream fa-fw" aria-hidden="true"></i><span>CATEGORIES</span>
+      <a class="pb-nav-parent pb-nav-posts{% unless pb_categories_active %} active{% endunless %}"{% unless pb_categories_active %} aria-current="page"{% endunless %} href="{{ '/posts/' | relative_url }}">
+        <i class="fas fa-pen-nib fa-fw" aria-hidden="true"></i><span>POSTS</span>
       </a>
     </nav>
   </div>
@@ -34,7 +44,7 @@
   <div class="pb-sidebar-foot">
     <a href="https://github.com/jwlee3746" target="_blank" rel="noopener">GitHub<span class="sr-only"> (새 탭에서 열림)</span></a>
     <a href="https://www.linkedin.com/in/jwlee3746/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (새 탭에서 열림)</span></a>
-    <a href="{{ '/' | relative_url }}" target="_blank" rel="noopener">Posts<span class="sr-only"> (새 탭에서 열림)</span></a>
+    <a href="{{ '/posts/' | relative_url }}" target="_blank" rel="noopener">Posts<span class="sr-only"> (새 탭에서 열림)</span></a>
     <a href="mailto:jwlee3746@naver.com">Email</a>
   </div>
 </aside>
