@@ -47,7 +47,8 @@ for page in \
   Agent/test-case-vs-simulator-evaluation \
   Agent/agent-evaluation-harness-landscape \
   Agent/hybrid-agent-evaluation-strategy \
-  Agent/demystifying-agent-evals-korean; do
+  Agent/demystifying-agent-evals-korean \
+  Agent/device-assistant-evaluation; do
   [ -f "/tmp/site/$page/index.html" ] || { echo "$page 글이 생성되지 않았습니다"; exit 1; }
 done
 
@@ -58,6 +59,12 @@ for diagram in \
   harness-common-model.svg \
   hybrid-evaluation-loop.svg; do
   [ -f "/tmp/site/assets/images/posts_img/agent-evaluation-series/$diagram" ] || { echo "$diagram 다이어그램이 누락됐습니다"; exit 1; }
+done
+
+for diagram in \
+  device-assistant-evaluation-episode.svg \
+  device-assistant-evaluation-layers.svg; do
+  [ -f "/tmp/site/assets/images/posts_img/device-assistant-evaluation/$diagram" ] || { echo "$diagram 다이어그램이 누락됐습니다"; exit 1; }
 done
 echo "빌드 검증 통과"
 '
