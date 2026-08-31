@@ -40,5 +40,23 @@ else
 fi
 [ -f /tmp/site/Paper/Attention1/index.html ] || { echo "글이 생성되지 않았습니다"; exit 1; }
 [ -f /tmp/site/posts/index.html ] || { echo "Posts 목록이 생성되지 않았습니다"; exit 1; }
+
+for page in \
+  Agent/reproducible-agent-evaluation \
+  Agent/trace-to-eval-data-flywheel \
+  Agent/test-case-vs-simulator-evaluation \
+  Agent/agent-evaluation-harness-landscape \
+  Agent/hybrid-agent-evaluation-strategy; do
+  [ -f "/tmp/site/$page/index.html" ] || { echo "$page 글이 생성되지 않았습니다"; exit 1; }
+done
+
+for diagram in \
+  series-overview-v2.svg \
+  trace-data-flywheel.svg \
+  tc-vs-simulator.svg \
+  harness-common-model.svg \
+  hybrid-evaluation-loop.svg; do
+  [ -f "/tmp/site/assets/images/posts_img/agent-evaluation-series/$diagram" ] || { echo "$diagram 다이어그램이 누락됐습니다"; exit 1; }
+done
 echo "빌드 검증 통과"
 '
