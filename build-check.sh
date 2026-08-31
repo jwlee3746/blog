@@ -19,14 +19,16 @@ docker run --rm -v "$PWD":/w -w /w ruby:3.1-slim bash -c '
 set -e
 apt-get update -qq >/dev/null 2>&1
 apt-get install -y -qq build-essential git >/dev/null 2>&1
-git config --global --add safe.directory /w
 gem install jekyll -v 3.9.3 --no-document -q >/dev/null 2>&1
 gem install kramdown-parser-gfm jekyll-paginate jekyll-sitemap jekyll-gist \
             jekyll-feed jekyll-include-cache --no-document -q >/dev/null 2>&1
 
 # Gemfile 은 이 레포를 테마 gem 으로 선언하고 jekyll-admin 을 요구한다.
 # Pages 는 그 Gemfile 을 쓰지 않으므로 사본에서 치우고 빌드한다.
-cp -r /w /build && cd /build && rm -f Gemfile Gemfile.lock
+cp -r /w /build && cd /build
+# linked worktree의 .git 파일은 컨테이너 밖 경로를 가리키므로 빌드 사본에서 제거한다.
+rm -rf .git
+rm -f Gemfile Gemfile.lock
 
 JEKYLL_ENV=production jekyll build --destination /tmp/site 2>&1 \
   | grep -vE "^\s+from |Faraday" | head -20
@@ -40,6 +42,12 @@ else
 fi
 [ -f /tmp/site/Paper/Attention1/index.html ] || { echo "글이 생성되지 않았습니다"; exit 1; }
 [ -f /tmp/site/posts/index.html ] || { echo "Posts 목록이 생성되지 않았습니다"; exit 1; }
+[ -f /tmp/site/categories/evaluation/index.html ] || { echo "Evaluation 카테고리가 생성되지 않았습니다"; exit 1; }
+grep -q "재현 가능한 LLM 에이전트 평가" /tmp/site/categories/evaluation/index.html || { echo "평가 글이 Evaluation 카테고리에 없습니다"; exit 1; }
+grep -q "LangChain deepagents SDK" /tmp/site/categories/Agent/index.html || { echo "일반 에이전트 글이 Agent 카테고리에 없습니다"; exit 1; }
+if grep -q "재현 가능한 LLM 에이전트 평가" /tmp/site/categories/Agent/index.html; then
+  echo "평가 글이 Agent 카테고리에 남아 있습니다"; exit 1
+fi
 
 for page in \
   Agent/reproducible-agent-evaluation \

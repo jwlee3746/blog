@@ -18,7 +18,12 @@
   </nav>
 
   <span class="pb-topbar-title">{{ page.title | default: site.title }}</span>
-  <a class="pb-search" href="{{ '/search/' | relative_url }}" aria-label="블로그 검색">
-    <i class="fas fa-search fa-fw" aria-hidden="true"></i><span>Search...</span>
-  </a>
+  <form class="pb-search" id="pb-search-form" role="search" action="{{ '/search/' | relative_url }}" method="get">
+    <label class="sr-only" for="pb-search-input">블로그 검색</label>
+    <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+    <input id="pb-search-input" name="q" type="search" placeholder="Search..." autocomplete="off">
+    <button class="pb-search-clear" id="pb-search-clear" type="button" aria-label="검색어 지우기" hidden>
+      <i class="fas fa-times fa-fw" aria-hidden="true"></i>
+    </button>
+  </form>
 </header>
