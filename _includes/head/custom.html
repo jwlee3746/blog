@@ -4,6 +4,10 @@
 <script>
   (function () {
     try {
+      {% if page.layout == 'categories' or page.layout == 'category' %}
+      document.documentElement.dataset.theme = 'dark';
+      return;
+      {% endif %}
       var t = localStorage.getItem('theme');
       if (t) document.documentElement.dataset.theme = t;
     } catch (e) {}
