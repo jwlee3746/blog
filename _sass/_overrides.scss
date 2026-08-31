@@ -180,22 +180,96 @@ h1, h2, h3, h4, h5, h6,
   color: var(--mm-text);
   font-size: 1.05rem;
 }
-.blog-intro__topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .55rem;
-  margin-top: 1.4rem;
+
+/* 홈: 많은 카테고리를 나열형 사이드바 대신 분야별 카드로 보여준다. */
+.category-intro {
+  max-width: 700px;
+  margin: -.5rem 0 3rem;
+  color: var(--mm-text);
 }
-.blog-intro__topics a {
-  padding: .38rem .85rem;
+.category-intro a { font-weight: 600; }
+.category-group { margin-top: 3.5rem; }
+.category-group__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid var(--mm-line);
+}
+.category-group__header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.category-group__header p {
+  margin: 0;
+  color: var(--mm-muted);
+  font-size: .88rem;
+  text-align: right;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .8rem;
+}
+.category-card {
+  min-width: 0;
+  padding: 1.1rem 1.2rem;
+  color: inherit;
+  border: 1px solid var(--mm-line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--mm-raised) 72%, transparent);
+  transition: transform .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.category-card:hover {
+  color: inherit;
+  border-color: var(--mm-accent);
+  background: var(--mm-active);
+  transform: translateY(-2px);
+}
+.category-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.category-card h3 { margin: 0; font-size: 1rem; }
+.category-card__count {
+  min-width: 1.7rem;
+  padding: .1rem .45rem;
   color: var(--mm-accent);
   background: var(--mm-chip);
   border-radius: 999px;
   font-family: $monospace;
-  font-size: .76rem;
+  font-size: .7rem;
+  text-align: center;
+}
+.category-card p {
+  margin: .55rem 0 .8rem;
+  color: var(--mm-text);
+  font-size: .86rem;
+}
+.category-card__latest {
+  overflow: hidden;
+  color: var(--mm-muted);
+  font-size: .72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.all-categories-link {
+  display: inline-flex;
+  margin-top: 2.5rem;
+  font-family: $monospace;
+  font-size: .78rem;
   font-weight: 600;
 }
-.blog-intro__topics a:hover { color: var(--mm-ink); background: var(--mm-active); }
+
+@media (max-width: 640px) {
+  .category-group__header { display: block; }
+  .category-group__header p { margin-top: .35rem; text-align: left; }
+  .category-grid { grid-template-columns: 1fr; }
+}
 
 /* 글 목록을 카드처럼 두껍게 감싸지 않고 구분선과 여백으로만 나눈다. */
 .entries-list .list__item {

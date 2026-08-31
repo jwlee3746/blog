@@ -4,7 +4,7 @@ main:
     url: https://jwlee3746.github.io/ # 포트폴리오 홈 (루트)
 
   - title: "Posts"
-    url: /posts/ # 최신 글부터 시간순으로 정렬한 전체 글 목록
+    url: /posts/ # 최신 글 목록
 
   - title: "Search"
     url: /search/
