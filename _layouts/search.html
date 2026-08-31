@@ -38,3 +38,18 @@ layout: default
     {%- endcase -%}
   </div>
 </div>
+
+<script>
+  window.addEventListener('load', function () {
+    var query = new URLSearchParams(window.location.search).get('q');
+    var input = document.getElementById('search');
+    if (!query || !input) return;
+
+    input.tabIndex = 0;
+    input.value = query;
+    window.setTimeout(function () {
+      input.dispatchEvent(new KeyboardEvent('keyup', { bubbles: true, key: query.slice(-1) }));
+      input.focus();
+    }, 0);
+  });
+</script>

@@ -12,7 +12,6 @@ layout: default
       <p class="pc-name-en">Jaewon Lee</p>
       <p class="pc-role">ML 엔지니어 · 삼성전자 MX사업부 Language AI</p>
       <p class="pc-tagline">LLM을 실제 제품에 태우는 일을 합니다.</p>
-      <a class="pc-resume" href="https://jwlee3746.github.io/resume/">이력서 1장 보기 · PDF <span aria-hidden="true">→</span></a>
 
       <nav class="pc-nav" aria-label="주요 메뉴">
         <a href="https://jwlee3746.github.io/">
@@ -24,8 +23,8 @@ layout: default
         <a class="active" href="{{ '/categories/' | relative_url }}" aria-current="page">
           <i class="fas fa-stream fa-fw" aria-hidden="true"></i><span>CATEGORIES</span>
         </a>
-        <a href="{{ '/search/' | relative_url }}">
-          <i class="fas fa-search fa-fw" aria-hidden="true"></i><span>SEARCH</span>
+        <a href="https://jwlee3746.github.io/resume/">
+          <i class="fas fa-file-alt fa-fw" aria-hidden="true"></i><span>RESUME</span>
         </a>
       </nav>
     </div>
@@ -49,9 +48,16 @@ layout: default
         {% endif %}
       </nav>
       <span class="pc-topbar-title">{{ page.title }}</span>
-      <a class="pc-search" href="{{ '/search/' | relative_url }}" aria-label="블로그 검색">
-        <i class="fas fa-search fa-fw" aria-hidden="true"></i><span>Search...</span>
-      </a>
+      <div class="pc-search-wrap">
+        <form class="pc-search" id="pc-search-form" role="search" action="{{ '/search/' | relative_url }}" method="get">
+          <label class="sr-only" for="pc-search-input">블로그 검색</label>
+          <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+          <input id="pc-search-input" name="q" type="search" placeholder="Search..." autocomplete="off">
+          <button class="pc-search-clear" id="pc-search-clear" type="button" aria-label="검색어 지우기" hidden>
+            <i class="fas fa-times fa-fw" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
     </header>
 
     <div class="pc-grid">
@@ -95,26 +101,52 @@ layout: default
     var trigger = document.getElementById('pc-sidebar-trigger');
     var mask = document.getElementById('pc-mask');
     var sidebar = document.getElementById('pc-sidebar');
-    if (!trigger || !mask || !sidebar) return;
+    var searchForm = document.getElementById('pc-search-form');
+    var searchInput = document.getElementById('pc-search-input');
+    var searchClear = document.getElementById('pc-search-clear');
 
     function closeSidebar() {
       document.body.classList.remove('pc-sidebar-open');
-      trigger.setAttribute('aria-expanded', 'false');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
     }
 
-    trigger.addEventListener('click', function () {
-      var open = document.body.classList.toggle('pc-sidebar-open');
-      trigger.setAttribute('aria-expanded', String(open));
-    });
-    mask.addEventListener('click', closeSidebar);
-    sidebar.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeSidebar);
-    });
+    if (trigger && mask && sidebar) {
+      trigger.addEventListener('click', function () {
+        var open = document.body.classList.toggle('pc-sidebar-open');
+        trigger.setAttribute('aria-expanded', String(open));
+      });
+      mask.addEventListener('click', closeSidebar);
+      sidebar.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeSidebar);
+      });
+    }
+
+    if (searchForm && searchInput && searchClear) {
+      searchInput.addEventListener('input', function () {
+        searchClear.hidden = searchInput.value.length === 0;
+      });
+      searchClear.addEventListener('click', function () {
+        searchInput.value = '';
+        searchClear.hidden = true;
+        searchInput.focus();
+      });
+      searchForm.addEventListener('submit', function (event) {
+        if (!searchInput.value.trim()) event.preventDefault();
+      });
+    }
+
     window.addEventListener('resize', function () {
       if (window.innerWidth >= 850) closeSidebar();
     });
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeSidebar();
+      if (event.key === 'Escape') {
+        closeSidebar();
+        if (searchInput && document.activeElement === searchInput) {
+          searchInput.value = '';
+          if (searchClear) searchClear.hidden = true;
+          searchInput.blur();
+        }
+      }
     });
   })();
 </script>
