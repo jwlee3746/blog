@@ -49,6 +49,10 @@ fi
 
 for page in \
   Agent/reproducible-agent-evaluation \
+  Agent/evaluation-contract-validation \
+  Agent/multi-step-agent-evaluation \
+  Agent/agent-path-scoring \
+  Agent/evaluation-checkpoint-provenance \
   Agent/trace-to-eval-data-flywheel \
   Agent/test-case-vs-simulator-evaluation \
   Agent/agent-evaluation-harness-landscape \
