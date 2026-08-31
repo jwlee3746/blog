@@ -945,31 +945,33 @@ html:has(.portfolio-blog)::after { display: none; }
   letter-spacing: .25px;
 }
 .pb-name-en {
-  margin: .45rem 0 0;
+  margin: 3px 0 0;
   color: var(--pb-muted);
   font-size: .95rem;
 }
 .pb-role {
-  margin: 1.15rem 0 0;
+  margin: 18px 0 0;
   color: var(--pb-muted);
   font-size: .86rem;
   font-weight: 600;
   line-height: 1.5;
 }
 .pb-tagline {
-  margin: .75rem 0 0;
+  margin: 9px 0 0;
   color: var(--pb-muted);
   font-size: .82rem;
   line-height: 1.6;
 }
 .pb-resume-cta,
 .pb-resume-cta:visited {
-  margin-top: 1.35rem;
+  margin-top: 22px;
   display: inline-flex;
   align-items: center;
-  gap: .4rem;
+  gap: 8px;
   color: var(--pb-link);
   font-size: .78rem;
+  font-weight: 500;
+  line-height: 1.72;
 }
 .pb-nav {
   margin: 30px -24px 0 -40px;
@@ -979,13 +981,12 @@ html:has(.portfolio-blog)::after { display: none; }
 }
 .pb-nav a,
 .pb-nav a:visited {
-  padding: .65rem 24px .65rem 40px;
+  padding: .6rem 24px .6rem 40px;
   display: flex;
   align-items: center;
   color: var(--pb-muted);
-  font-size: 90%;
   font-weight: 600;
-  letter-spacing: .2px;
+  line-height: 1.72;
 }
 .pb-nav a:hover,
 .pb-nav a.active {
@@ -995,8 +996,15 @@ html:has(.portfolio-blog)::after { display: none; }
 .pb-nav i {
   width: 1.25rem;
   margin-right: 1rem;
+  color: inherit;
   font-size: 95%;
   opacity: .8;
+}
+.pb-nav .pb-nav-parent > span {
+  color: inherit;
+  font-size: 90%;
+  font-weight: 600;
+  letter-spacing: .2px;
 }
 .pb-nav-group { width: 100%; }
 .pb-nav-sub {
@@ -1031,11 +1039,19 @@ html:has(.portfolio-blog)::after { display: none; }
   padding-top: 18px;
   display: flex;
   flex-wrap: wrap;
-  gap: .65rem;
+  align-items: center;
+  gap: .55rem;
   border-top: 1px solid var(--pb-sidebar-border);
+  color: var(--pb-muted);
+  font-family: var(--pb-font);
+  font-size: .78rem;
 }
 .pb-sidebar-foot a,
-.pb-sidebar-foot a:visited { color: var(--pb-muted); font-size: .78rem; }
+.pb-sidebar-foot a:visited {
+  color: var(--pb-muted);
+  font-size: .78rem;
+  line-height: 1.72;
+}
 .pb-sidebar-foot a:hover { color: var(--pb-heading); }
 
 .pb-shell { min-height: 100vh; margin-left: 260px; }
