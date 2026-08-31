@@ -8,38 +8,71 @@
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js{% if page.layout == 'categories' or page.layout == 'category' %} pc-theme-root{% endif %}">
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js" data-theme="dark">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
 
-    <meta name="msapplication-TileColor" content="#ffc40d">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#1e1e1e">
+    <meta name="theme-color" content="#1b1b1e">
   </head>
 
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+  <body class="portfolio-blog layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
     {% include_cached skip-links.html %}
     {% include_cached browser-upgrade.html %}
-    {% include_cached masthead.html %}
 
-    <div class="initial-content">
-      {{ content }}
-    </div>
+    <div class="pb-layout">
+      {% include blog-sidebar.html %}
 
-    {% if site.search == true %}
-      <div class="search-content">
-        {% include_cached search/search_form.html %}
+      <div class="pb-shell">
+        {% include blog-topbar.html %}
+
+        <div class="pb-grid">
+          <main class="pb-content initial-content" id="main-content">
+            {{ content }}
+          </main>
+
+          {% include blog-panel.html %}
+        </div>
+
+        <footer class="pb-footer" id="footer">
+          <span>&copy; {{ site.time | date: '%Y' }} Jaewon Lee</span>
+          <span>Built for clarity, kept intentionally simple.</span>
+        </footer>
       </div>
-    {% endif %}
-
-    <div id="footer" class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include_cached footer.html %}
-      </footer>
     </div>
+
+    <div class="pb-mask" id="pb-mask" aria-hidden="true"></div>
 
     {% include scripts.html %}
 
+    <script>
+      (function () {
+        var trigger = document.getElementById('pb-sidebar-trigger');
+        var mask = document.getElementById('pb-mask');
+        var sidebar = document.getElementById('pb-sidebar');
+        if (!trigger || !mask || !sidebar) return;
+
+        function closeSidebar() {
+          document.body.classList.remove('pb-sidebar-open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+
+        trigger.addEventListener('click', function () {
+          var open = document.body.classList.toggle('pb-sidebar-open');
+          trigger.setAttribute('aria-expanded', String(open));
+        });
+        mask.addEventListener('click', closeSidebar);
+        sidebar.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', closeSidebar);
+        });
+        window.addEventListener('resize', function () {
+          if (window.innerWidth >= 850) closeSidebar();
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') closeSidebar();
+        });
+      })();
+    </script>
   </body>
 </html>

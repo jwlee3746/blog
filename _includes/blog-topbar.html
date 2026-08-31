@@ -1,0 +1,24 @@
+<header class="pb-topbar" aria-label="현재 페이지">
+  <button class="pb-sidebar-trigger" id="pb-sidebar-trigger" type="button" aria-label="메뉴 열기" aria-expanded="false">
+    <i class="fas fa-bars fa-fw" aria-hidden="true"></i>
+  </button>
+
+  <nav class="pb-breadcrumb" aria-label="경로">
+    {% if page.layout == 'category' %}
+      <a href="{{ '/categories/' | relative_url }}">Categories</a><span>/</span><strong>{{ page.title }}</strong>
+    {% elsif page.layout == 'categories' %}
+      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>Categories</strong>
+    {% elsif page.layout == 'search' %}
+      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>Search</strong>
+    {% elsif page.id %}
+      <a href="{{ '/' | relative_url }}">Posts</a><span>/</span><strong>{{ page.title | strip_html }}</strong>
+    {% else %}
+      <span>Posts</span><span>/</span><strong>{{ page.title | default: site.title }}</strong>
+    {% endif %}
+  </nav>
+
+  <span class="pb-topbar-title">{{ page.title | default: site.title }}</span>
+  <a class="pb-search" href="{{ '/search/' | relative_url }}" aria-label="블로그 검색">
+    <i class="fas fa-search fa-fw" aria-hidden="true"></i><span>Search...</span>
+  </a>
+</header>
